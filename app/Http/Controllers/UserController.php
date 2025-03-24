@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Ticket;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,8 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::findOrFail(1);
-        return view('tickets.index',['tickets' => $user->tickets]);
+        $user = User::where('id',1)->with('tickets')->get();
+
+        return view('tickets.index',['userWithTickets' => $user]);
     }
 
     /**

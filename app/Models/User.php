@@ -21,11 +21,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
     ];
 
     public function tickets()
     {
         return $this->hasMany(Ticket::class); // Egy usernek több ticketje lehet
+    }
+    public function role(){
+        return $this->belongsTo(Role::class);
     }
 
     /**
