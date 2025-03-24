@@ -19,7 +19,7 @@ class UserController extends Controller
         $user = User::where('id', 4)
         ->with(['tickets' => function ($query) use ($filter) {
             if ($filter) {
-                $query->where('status', $filter);
+                $query->filterByStatus($filter);
             }
         }])
         ->first();

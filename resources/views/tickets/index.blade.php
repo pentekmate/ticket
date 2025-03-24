@@ -19,11 +19,12 @@
 
     @foreach ($filters as $key => $label)
         <a href="{{ route('user.tickets.index', ['user' => 4] + request()->except('filter') + ['filter' => $key]) }}"
-           class="{{ request('filter') === $key ? 'text-green-900 font-bold' : 'filter-item' }}">
+           class="{{ request('filter') === (string) $key ? 'text-green-900 font-bold' : 'filter-item' }}">
            {{ $label }}
         </a>
     @endforeach
 </div>
+
 
     <div class="flex flex-col gap-6">
 

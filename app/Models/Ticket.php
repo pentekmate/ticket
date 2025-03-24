@@ -24,8 +24,18 @@ class Ticket extends Model
 
 
     public function scopeFilterByStatus(Builder $query,$status){
-        if($status){
-            return $query->where('status',$status);
+        if($status === ""){
+            return $query->where('status','Nyitott'); ;
         }
+        else if($status=== "closed"){
+            return $query->where('status','Lezárva');
+        }
+        else if($status=== "pending"){
+            return $query->where('status','Folyamatban');
+        }
+        else if($status === "all"){
+            return $query;
+        }
+
     }
 }
