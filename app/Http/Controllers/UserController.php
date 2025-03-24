@@ -11,11 +11,23 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $user = User::where('id',1)->with('tickets')->get();
+    public function index(Request $request)
+    {   
+        $filter = $request ->filter;
 
-        return view('tickets.index',['userWithTickets' => $user]);
+        
+        $user = User::where('id', 4)
+        ->with(['tickets' => function ($query) use ($filter) {
+            if ($filter) {
+                $query->where('status', $filter);
+            }
+        }])
+        ->first();
+
+        // Ha létezik a felhasználó, akkor visszaadjuk a ticketeket
+        $tickets = $user ? $user->tickets : [];
+
+        return view('tickets.index',compact('tickets'));
     }
 
     /**

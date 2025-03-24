@@ -26,11 +26,17 @@ class User extends Authenticatable
 
     public function tickets()
     {
-        return $this->hasMany(Ticket::class); // Egy usernek több ticketje lehet
+        return $this->hasMany(Ticket::class,'user_id'); // Egy usernek több ticketje lehet
     }
     public function role(){
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class,);
     }
+
+    public function assignedTickets(){
+        return $this->hasMany(Ticket::class,'admin_id');
+    }
+
+ 
 
     /**
      * The attributes that should be hidden for serialization.

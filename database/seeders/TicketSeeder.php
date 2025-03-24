@@ -14,14 +14,16 @@ class TicketSeeder extends Seeder
      */
     public function run(): void
     {
-        $users = User::all();
-
-
+        $teachers = User::where('role_id',1)->get();
+        $sysAdmins = User::where('role_id',0)->get();
+        
         for ($i=0; $i < 1000; $i++) { 
-            $user = $users->random();
+            $user = $teachers->random();
+            $sysAdmin = $sysAdmins->random();
 
             Ticket::factory()->create([
-                'user_id'=>$user->id
+                'user_id'=>$user->id,
+                'admin_id'=>$sysAdmin->id
             ]);
         }
     }

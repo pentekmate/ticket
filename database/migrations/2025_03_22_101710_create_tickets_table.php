@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('content',255);
             $table->integer('priority');
-            $table->foreignIdFor(User::class);
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('admin_id')->constrained('users')->onDelete('cascade');
         });
     }
 

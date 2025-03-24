@@ -13,8 +13,8 @@ class RoleSeeder extends Seeder
     public function run()
     {
         Role::insert([
-            ['id' => 1, 'role_name' => 'rendszergazda'],
-            ['id' => 2, 'role_name' => 'tanár'],
+            ['id' => 0, 'role_name' => 'rendszergazda'],
+            ['id' => 1, 'role_name' => 'tanár'],
         ]);
     }
 }

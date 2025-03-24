@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return redirect()->route('user.tickets.index',['user'=>1]);
+    return redirect()->route('user.tickets.index', ['user' => 4]);
 });
+
 
 Route::resource('user.tickets',UserController::class)->only(['index']);
 // Route::resource('',TicketController::class);

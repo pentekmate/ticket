@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory(100)->create();
+        User::factory(2)->create(['role_id'=>0]);
+        User::factory(100)->create(['role_id'=>1]);
 
         $this->call(TicketSeeder::class);
     }
